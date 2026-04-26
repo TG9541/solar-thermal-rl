@@ -20,10 +20,10 @@
 
 ### 2.3 System Theory
 - **Physical System Description**
-  - Collector specifications and operation
-  - Storage tank dynamics and thermal mass
-  - Heat exchanger characteristics
-  - Control system logic and control theory
+  - Collector specifications: Flat Plate Collectors, Indirect (Closed Loop) configuration.
+  - Heat Transfer Fluid (HTF): Glycol/water mix.
+  - Storage: Gravity type tank with heat exchanger in the lower half.
+  - Control: Overheat protection (80°C max) and safety valves.
 
 - **Mathematical Modeling**
   - Energy balance equations
