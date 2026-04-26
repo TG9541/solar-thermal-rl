@@ -1,42 +1,30 @@
 # Plant Specification: Solar-Thermal System Theory
 
 ## 1. Overview
-This document outlines the theoretical and operational principles of a solar-thermal hot water heating system, based on general industry standards and academic principles.
+This document outlines the technical and operational principles of a solar-thermal hot water heating system, based on general industry standards.
 
 ## 2. System Classification
-Solar water heating systems are classified based on their operation and fluid handling:
+A Solar water heating systems are classified based on their operation and fluid handling:
 
 ### 2.1. Operational Mode
-*   **Passive Systems:** Rely on natural convection or heat pipes for fluid circulation. They are simpler and require low maintenance but are less efficient and more susceptible to overheating/freezing.
-*   **Active Systems:** Use pumps to circulate the working fluid. They are more expensive but offer higher efficiency and precise control, allowing for integration with backup heating systems.
+*   **Active Systems:** that uses a pump to circulate the working fluid between a collector and a storage tank controlled by the temperature difference measured with a 1st sensor at the collector and a 2nd sensor just above a heat-exchanger which is in the bottom half of the storage tank. The system has a backup heating with an independen heat exchanger which is in the upper half of the storage tank. The control of the backup heating system is independent from the solar-thermal heating system and operates when a lower temperature threshold in the upper half of the storage system is reached, provided that the backup heating is on-line. 
+
+They are more expensive but offer higher efficiency and precise control, allowing for integration with backup heating systems.
 
 ### 2.2. Fluid Handling
-*   **Direct (Open Loop):** Potable water is circulated directly through the collectors. This is cheaper but offers minimal freeze/overheat protection unless specialized collectors are used.
 *   **Indirect (Closed Loop):** A separate heat-transfer fluid (HTF), typically a water/antifreeze mix (e.g., propylene glycol), is circulated through the collectors. Heat is then transferred to the potable water via a heat exchanger. This offers superior freeze and overheat protection.
 
 ## 3. Collector Technology
-The primary components for heat capture are:
 
-### 3.1. Flat Plate Collectors
-*   **Design:** An insulated box with a glass cover and an absorber plate (often copper fins).
-*   **Pros:** Durable, relatively inexpensive.
-*   **Cons:** Requires careful insulation; efficiency drops significantly when the temperature difference between the collector and ambient air is small.
-*   **Application:** Suitable for moderate climates.
-
-### 3.2. Evacuated Tube Collectors
-*   **Design:** Consists of glass tubes with a vacuum inside, minimizing heat loss.
-*   **Pros:** Highly efficient, especially in cold climates, due to superior insulation.
-*   **Cons:** More complex and costly.
-*   **Application:** Ideal for colder climates and often used in drainback systems.
+### 3. Flat Plate Collector Technology
+The primary components for heat capture flat plate collector:
+**Design:** An insulated box with a glass cover and an absorber plate (copper fins).
 
 ## 4. System Management and Safety
-*   **Freeze Protection:**
-    *   **Drainback Systems:** The HTF (usually pure water) is drained by gravity when the pump stops, preventing freezing. This is a common feature in active indirect systems.
-    *   **Antifreeze:** Using fluids like propylene glycol prevents freezing but requires periodic replacement and adds complexity.
+*   **Heat Transfer Fluid (HTF) with Freeze Protection:**
+    *   **Antifreeze:** Using fluids like propylene glycol prevents freezing
 *   **Overheat Protection:**
-    *   **Controllers/Valves:** Active systems use controllers and safety valves to prevent excessive temperatures, which can degrade the HTF or damage components.
-*   **Heat Transfer Fluid (HTF):**
-    *   **Water:** Used in direct and drainback systems.
+    *   **Controllers/Valves:** an active system uses the controller and safety valves to prevent excessive temperatures, which can degrade the HTF or damage components.
     *   **Glycol/Water Mix:** Used in indirect systems for freeze protection.
 
 ## 5. Data Acquisition Considerations
@@ -44,5 +32,10 @@ For accurate RL parameter identification, the following data points are critical
 *   **Collector Temperature:** Inlet and outlet temperatures from the Flat Plate Collector.
 *   **Storage Temperature:** Temperature measured just above the heat exchanger (for pump control) and at the storage tank outlet.
 *   **Pump Status:** Binary state (ON/OFF) of the circulation pump.
-*   **Control Status:** System setpoints and auxiliary heater activation status.
+*   **Control Status:** System setpoints (on - off with 5C deadband) and auxiliary heater activation status.
+
+## 6. Inferred Data
 *   **Inferred Irradiance:** Estimated solar radiation based on time-of-day, weather, and seasonal models.
+*   **Inferred Storrage Heat Loss:** Estimated heat loss based on ambient temperature (10C to 30C).
+*   **Inferred Hot Water Consumption** ussage depending on time-of-day (e.g., shower) and current temperature in the upper half of the storage (less wate is needed for a shower rwhen the water is very hot)
+*   **Inferred Storage Temperature Gradient** storage water temperature of the vertical storage tank caused by gravitational effects based on geometry data (hight, volume).
