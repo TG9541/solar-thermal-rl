@@ -8,7 +8,7 @@ The architecture is divided into five primary subsystems, ensuring modularity, t
 ## 2. Subsystems and Responsibilities
 
 ### 2.1. Plant Modeling Subsystem (The Physics Engine)
-**Responsibility:** To accurately simulate the thermal dynamics of the physical solar-thermal heating system based on known physical laws. This subsystem provides the 'ground truth' model against which parameter identification and state estimation is performed.
+**Responsibility:** To accurately simulate the thermal dynamics of the physical solar-thermal heating system based on known physical laws. This subsystem provides the 'ground truth' model against which parameter identification and state estimation is performed. For detailed physical component specifications and system classification, see [Plant Specification](docs/plant-specification.md).
 **Key Components:**
 *   **Collector Model:** Calculates solar energy absorption, considering irradiance, angle of incidence, and collector efficiency (which contains parameters like $\eta_{collector}$).
 *   **Storage Tank Model:** Simulates thermal mass, stratification, and heat transfer within the storage tank.
@@ -23,7 +23,7 @@ The architecture is divided into five primary subsystems, ensuring modularity, t
 *   **Sensor Interface Layer:** Handles communication protocols (e.g., reading from temperature sensors, flow meters).
 *   **Data Synchronization & QA:** Ensures temporal alignment of data from disparate sources (e.g., synchronizing temperature and irradiance readings). Performs outlier detection and missing data imputation.
 *   **Data Pipeline:** Buffers and formats data into a standardized format suitable for both RL training and real-time display.
-**Inputs:** Raw sensor readings (Temperature, Flow, Irradiance).
+**Inputs:** Raw sensor readings (see [Section 5: Data Acquisition Considerations](docs/plant-specification.md#5-data-acquisition-considerations)).
 **Outputs:** Cleaned, time-series data streams.
 
 ### 2.3. RL Parameter Identification Subsystem (The Learner)
@@ -32,11 +32,11 @@ The architecture is divided into five primary subsystems, ensuring modularity, t
 *   **RL Agent:** The learning algorithm (e.g., Bayesian Inference, Gradient Descent variant) that suggests parameter adjustments.
 *   **Reward/Loss Function:** Measures the discrepancy between the model's output and the actual measured state.
 *   **Optimization Engine:** Manages the training loop, hyperparameter tuning, and convergence criteria.
-**Inputs:** Cleaned System State Data (from Subsystem 2.2), Model Definition (from Subsystem 2.1).
+**Inputs:** Cleaned System State Data (from Subsystem 2.2, based on [Section 5](docs/plant-specification.md#5-data-acquisition-considerations)), Model Definition (from Subsystem 2.1).
 **Outputs:** Optimized parameter set ($\Theta_{identified}$).
 
 ### 2.4. Model-Based State Estimation Subsystem (The Predictor)
-**Responsibility:** To provide real-time estimates of internal, unmeasurable system states (e.g., instantaneous thermal mass, unmeasured heat loss) by running the Plant Model Subsystem in an estimation loop, often using techniques like Kalman Filtering or observer patterns.
+**Responsibility:** To provide real-time estimates of internal, unmeasurable system states (e.g., [Inferred Data](docs/plant-specification.md#6-inferred-data)) by running the Plant Model Subsystem in an estimation loop, often using techniques like Kalman Filtering or observer patterns.
 **Key Components:**
 *   **State Estimator:** Integrates current measurements with the dynamic model and the latest identified parameters ($\Theta_{identified}$).
 *   **Prediction Model:** Utilizes the deterministic core of the Plant Model to project future states.
