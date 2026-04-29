@@ -359,9 +359,12 @@ solar-thermal-rl/
   - Sensitivity analysis
 
 ### 8.2 Validation Framework
+- **Mathematical Modelling**
+  - Mathematical plant model creation and documentation
+  - Mathematical model validation, approval baselining
+
 - **Unit Tests:**
   - Individual component validation
-  - Mathematical correctness verification
   - Boundary condition testing
 
 - **Integration Tests:**
@@ -378,6 +381,7 @@ solar-thermal-rl/
 
 ### 9.1 Testing Phases
 - **Phase 1: Component Testing**
+  - Mathematical correctness verification against the Mathematical Model baseline
   - Individual module unit tests
   - Mathematical correctness verification
   - Parameter sensitivity analysis
@@ -406,39 +410,41 @@ solar-thermal-rl/
 ## 10. Project Timeline and Milestones
 
 ### Phase 1: Specification and Planning (Weeks 1-2)
-- Create specification document
-- Define theoretical framework
-- Design data collection protocol
+- [ ] Create specification document
+- [ ] Define theoretical framework
+- [ ] Design data collection protocol
 
 ### Phase 2: Mathematical Modeling (Weeks 3-4)
-- Develop system dynamics equations
-- Create state-space representation
-- Define reduced-order models
+- [ ] Develop system dynamics equations
+- [ ] Create state-space representation
+- [ ] Define reduced-order models
 
 ### Phase 3: Simulation Development (Weeks 5-7)
-- Implement core simulation engine
-- Create data generation modules
-- Build validation framework
+- [ ] Implement core simulation engine
+- [ ] Create data generation modules
+- [ ] Build validation framework
+- [ ] Validate the mathematical model and its implementation with the user, or iterate back to phase 1 or phase 2.
+- [ ] Sign-off of the mathematical model
 
 ### Phase 4: RL Framework Implementation (Weeks 8-10)
-- Design RL algorithm
-- Implement parameter optimizer
-- Develop training pipeline
+- [ ] Design RL algorithm
+- [ ] Implement parameter optimizer
+- [ ] Develop training pipeline
 
 ### Phase 5: Web Interface Development (Weeks 11-12)
-- Build SSE server components
-- Create web client interface
-- Implement data visualization
+- [ ] Build SSE server components
+- [ ] Create web client interface
+- [ ] Implement data visualization
 
 ### Phase 6: Integration and Testing (Weeks 13-14)
-- System integration
-- End-to-end testing
-- Performance validation
+- [ ] System integration
+- [ ] End-to-end testing
+- [ ] Performance validation
 
 ### Phase 7: Documentation and Deployment (Weeks 15-16)
-- Complete documentation
-- User guides and manuals
-- Final testing and deployment
+- [ ] Complete documentation
+- [ ] User guides and manuals
+- [ ] Final testing and deployment
 
 ## 11. Deliverables
 
@@ -453,7 +459,7 @@ solar-thermal-rl/
 ## 12. Success Criteria
 
 - Mathematical model accurately represents system dynamics
-- RL algorithm identifies parameters with <10% error
+- RL algorithm identifies parameters with acceptable error (sign-off by user)
 - Web client successfully transmits real-time data
 - Simulation results validated against physical system
 - Complete documentation and user guides provided
