@@ -25,11 +25,11 @@
   - Storage: Gravity type tank with heat exchanger in the lower half.
   - Control: Overheat protection (80°C max) and safety valves.
 
-- **Mathematical Modeling**
+- **Mathematical Modeling (Theoretical Derivation & Documentation)**
   - Energy balance equations
   - State-space representation
   - Simplified reduced-order models
-  - Parameter definitions and physical meanings
+  - Parameter definitions and physical meanings (documented in formal LaTeX/Markdown)
 
 - **Thermodynamic Principles**
   - Heat transfer mechanisms
@@ -87,6 +87,8 @@
 - **Subsystem 3: RL Parameter Identification:** The learning engine responsible for estimating physical parameters ($\Theta_{identified}$) by minimizing the error between the model and observed data.
 - **Subsystem 4: State Estimation:** Runs dynamic observers (e.g., Kalman Filter) using the Plant Model and identified parameters to estimate unmeasured internal states ($\hat{X}$) in real-time.
 - **Subsystem 5: Usage & Interface:** Translates system data and estimates into actionable outputs, serving either the Web Client (presentation) or a Higher-Level Controller (HLC) for scheduling and decision-making.
+
+Refer to `docs/architecture.md` for detailed subsystem interactions and data flow.
 
 - **Technical Requirements**
   - Programming languages and frameworks
