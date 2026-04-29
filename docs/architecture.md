@@ -14,6 +14,7 @@ The architecture is divided into five primary subsystems, ensuring modularity, t
 *   **Storage Tank Model:** Simulates thermal mass, stratification, and heat transfer within the storage tank.
 *   **Heat Exchanger Model:** Models the thermal exchange efficiency between the collector loop and the storage tank.
 *   **Control Logic Model:** Simulates the operation of actuators (pump, backup heater) based on defined control algorithms (e.g., deadband, setpoints).
+*   **Hydraulic/Transport Delay Model:** Simulates the thermal transport delay and fluid circulation dynamics (e.g., 40s cycle) within the closed-loop pipes.
 **Inputs:** External data (Irradiance, Ambient Temperature), Control Actions (Pump ON/OFF).
 **Outputs:** System State variables (Temperature profiles, flow rates, Energy inventory).
 
@@ -21,13 +22,13 @@ The architecture is divided into five primary subsystems, ensuring modularity, t
 **Responsibility:** To collect, synchronize, preprocess, and validate raw data from the physical system sensors. It acts as the interface between the real world and the computational models.
 **Key Components:**
 *   **Sensor Interface Layer:** Handles communication protocols (e.g., reading from temperature sensors, flow meters).
-*   **Data Synchronization & QA:** Ensures temporal alignment of data from disparate sources (e.g., synchronizing temperature and irradiance readings). Performs outlier detection and missing data imputation.
+*   **Data Synchronization & QA:** Ensures temporal alignment of data from disparate sources (e.g., synchronizing temperature and irradiance readings). Performs outlier detection and missing data imputation. Also includes oscillation/fluctuation analysis to support the inference of HTF volume and transport delays.
 *   **Data Pipeline:** Buffers and formats data into a standardized format suitable for both RL training and real-time display.
 **Inputs:** Raw sensor readings (see [Section 5: Data Acquisition Considerations](docs/plant-specification.md#5-data-acquisition-considerations)).
 **Outputs:** Cleaned, time-series data streams.
 
 ### 2.3. RL Parameter Identification Subsystem (The Learner)
-**Responsibility:** To use real-world or simulated data to estimate and refine the unknown physical parameters of the Plant Model Subsystem (e.g., $U_{collector}, k_{demand}$). It utilizes RL principles to minimize the error between the model's prediction and the observed data.
+**Responsibility:** To use real-world or simulated data to estimate and refine the unknown physical parameters of the Plant Model Subsystem (e.g., $U_{collector}, k_{demand}$, and transport delay/HTF volume). It utilizes RL principles to minimize the error between the model's prediction and the observed data.
 **Key Components:**
 *   **RL Agent:** The learning algorithm (e.g., Bayesian Inference, Gradient Descent variant) that suggests parameter adjustments.
 *   **Reward/Loss Function:** Measures the discrepancy between the model's output and the actual measured state.
