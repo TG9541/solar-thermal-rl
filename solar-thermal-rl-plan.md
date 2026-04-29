@@ -228,7 +228,7 @@ Refer to `docs/architecture.md` for detailed subsystem interactions and data flo
 ### 5.2 Identification Methodology
 - **Model Structure:**
   - Reduced-order state-space model
-  - Parameter set: [η_collector, U_collector, ε_hx, U_tank, k_demand]
+-   Parameter set: [η_collector, U_collector, ε_hx, U_tank, k_demand, transport_delay, HTF_volume]
   - Time constants and thermal masses
 
 - **Learning Algorithm:**
@@ -266,7 +266,8 @@ solar-thermal-rl/
 │   │   ├── system_dynamics.py
 │   │   ├── collector_model.py
 │   │   ├── tank_model.py
-│   │   └── heat_exchanger.py
+│   │   ├── heat_exchanger.py
+│   │   └── hydraulic_model.py
 │   ├── identification/
 │   │   ├── rl_agent.py
 │   │   ├── parameter_optimizer.py
